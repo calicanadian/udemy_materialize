@@ -1,0 +1,21 @@
+.row
+  .col.s12
+    %h3.center-align Course Listing
+.row
+  - if @courses.blank?
+    .col.s6.m6
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          %span.card-title No Courses Available At This Time
+        .card-action
+          = link_to "Create Course", course_new_path, class: ""
+  - else
+    - @courses.each do |course|
+      .col.s6.m6
+        .card.blue-grey.darken-1
+          .card-content.white-text
+            %span.card-title= "#{course.short_name}: #{course.name}"
+            %p= course.description
+          .card-action
+            = link_to "Enroll", "#", class: ""
+            = link_to "Info", "#", class: ""

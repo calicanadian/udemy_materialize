@@ -2,10 +2,82 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title UdemyMaterialize
+    %title Tech University
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    %header
+      %ul#account1.dropdown-content
+        %li
+          %a{:href => "#!"} one
+        %li
+          %a{:href => "#!"} two
+        %li.divider
+        %li
+          %a{:href => "#!"} three
+      %ul#account2.dropdown-content
+        %li
+          %a{:href => "#!"} one
+        %li
+          %a{:href => "#!"} two
+        %li.divider
+        %li
+          %a{:href => "#!"} three
+
+      %nav
+        .container
+          .nav-wrapper
+            = link_to root_path, class: "brand-logo right" do
+              Tech University
+            = link_to "#", data: { target: 'mobile-demo' }, class: "sidenav-trigger" do
+              %i.material-icons menu
+
+            %ul#nav-mobile.left.hide-on-med-and-down
+              %li
+                = link_to "Courses", "#!"
+              %li
+                = link_to "Enrollments", "#!"
+              %li
+                = link_to "#!", data: { target: "account1" }, class: "dropdown-trigger" do
+                  Account
+                  %i.material-icons.right arrow_drop_down
+            %ul#mobile-demo.sidenav
+              %li
+                = link_to "Courses", "#!"
+              %li
+                = link_to "Enrollments", "#!"
+              %li
+                = link_to "#!", data: { target: "account2" }, class: "dropdown-trigger" do
+                  Account
+                  %i.material-icons.right arrow_drop_down
+
+
+    %main
+      .container
+        = yield
+
+    %footer.page-footer
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text Tech University
+            %p.grey-text.text-lighten-4 The future of development training
+          .col.l4.offset-l2.s12
+            %h5.white-text Information
+            %ul
+              %li
+                = link_to help_path, class: "grey-text text-lighten-3" do
+                  Help
+              %li
+                = link_to about_path, class: "grey-text text-lighten-3" do
+                  About
+              %li
+                = link_to contact_us_path, class: "grey-text text-lighten-3" do
+                  Contact Us
+      .footer-copyright
+        .container
+          &copy;
+          = "#{Time.now.year} Copyright Text"
+          %a.grey-text.text-lighten-4.right{:href => "#!"} More Links
